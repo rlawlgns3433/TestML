@@ -1,0 +1,29 @@
+{
+    "My_Basic": {
+        "checkpoints": [
+            {
+                "steps": 353,
+                "file_path": "results\\myMoveBall\\My_Basic\\My_Basic-353.onnx",
+                "reward": -1.0,
+                "creation_time": 1680621603.637786,
+                "auxillary_file_paths": [
+                    "results\\myMoveBall\\My_Basic\\My_Basic-353.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 353,
+            "file_path": "results\\myMoveBall\\My_Basic.onnx",
+            "reward": -1.0,
+            "creation_time": 1680621603.637786,
+            "auxillary_file_paths": [
+                "results\\myMoveBall\\My_Basic\\My_Basic-353.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}
