@@ -9,14 +9,18 @@ using Unity.MLAgents.Sensors;
 
 public class gRollerBall : Agent
 {
+
     bool isCollid = false;
     Rigidbody rBody;
+    public float rotate_val = 20;
+    
     void Start()
     {
         rBody = GetComponent<Rigidbody>();
     }
 
     public Transform Target;
+    public Transform obstacle;
     public override void OnEpisodeBegin()
     {
         //새로운 애피소드 시작시, 다시 에이전트의 포지션의 초기화
@@ -41,6 +45,12 @@ public class gRollerBall : Agent
         Target.localPosition = new Vector3(Random.value * 8 - 4,
                                            0.5f,
                                            Random.value * 8 - 4);
+        obstacle.localPosition = new Vector3(Random.value * 8 - 3,
+                                           0.5f,
+                                           Random.value * 8 - 3);
+        //obstacle.localEulerAngles = new Vector3(0.0f,
+        //                                   Random.value * 90,
+        //                                   0.0f);
     }
 
     /// <summary>
@@ -55,6 +65,10 @@ public class gRollerBall : Agent
         sensor.AddObservation(Target.localPosition);
         sensor.AddObservation(this.transform.localPosition);
 
+        // 에이전트의 방향을 전달한다.
+        sensor.AddObservation(this.transform.eulerAngles.x);
+        sensor.AddObservation(this.transform.eulerAngles.z);
+
         //현재 에이전트의 이동량을 전달한다.
         // Agent velocity
         sensor.AddObservation(rBody.velocity.x);
@@ -64,7 +78,7 @@ public class gRollerBall : Agent
     /// <summary>
     /// 강화학습을 위한, 강화학습을 통한 행동이 결정되는 곳
     /// </summary>
-    public float forceMultiplier = 10;
+    public float forceMultiplier = 4;
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
         //학습을 위한, 학습된 정보를 해석하여 이동을 시킨다.
@@ -73,12 +87,21 @@ public class gRollerBall : Agent
         Vector3 controlSignal = Vector3.zero;
         controlSignal.x = actionBuffers.ContinuousActions[0];
         controlSignal.z = actionBuffers.ContinuousActions[1];
+
+        //transform.position += (controlSignal * forceMultiplier * Time.deltaTime);
         rBody.AddForce(controlSignal * forceMultiplier);
+
+        Vector3 EulerAngleVelocity = new Vector3(0, Random.value * 90 - Random.value * 90, 0);
+        Quaternion deltaRotation = Quaternion.Euler(EulerAngleVelocity * Time.deltaTime * Random.value * rotate_val);
+
+
+        rBody.MoveRotation(rBody.rotation * deltaRotation);
+
 
         // Rewards
         float distanceToTarget = Vector3.Distance(this.transform.localPosition, Target.localPosition);
 
-        //타겟을 찻을시 리워드점수를 주고, 에피소드를 종료시킨다.
+        //타겟을 찾을시 리워드점수를 주고, 에피소드를 종료시킨다.
         // Reached target
         if (distanceToTarget < 1.42f)
         {
@@ -88,10 +111,10 @@ public class gRollerBall : Agent
 
         //판 아래로 떨어지면 학습이 종료된다.
         // Fell off platform
-        else if (this.transform.localPosition.y < 0)
-        {
-            EndEpisode();
-        }
+        //else if (this.transform.localPosition.y < 0)
+        //{
+        //    EndEpisode();
+        //}
     }
 
     //학습할 때 ON
