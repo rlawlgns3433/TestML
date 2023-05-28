@@ -436,7 +436,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6373488731522450990}
   m_Layer: 0
-  m_Name: TrainingArea
+  m_Name: NoRayTrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -474,8 +474,8 @@ GameObject:
   - component: {fileID: 6373488732032055758}
   - component: {fileID: 6373488732032055752}
   - component: {fileID: 4611529461493138210}
-  - component: {fileID: 5814752624815313112}
-  - component: {fileID: 5983425411086603012}
+  - component: {fileID: 2949716397477124036}
+  - component: {fileID: 5080306390224907199}
   m_Layer: 0
   m_Name: BasicAgent
   m_TagString: Player
@@ -590,7 +590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 6
+    VectorObservationSize: 0
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
@@ -608,7 +608,7 @@ MonoBehaviour:
   m_UseChildActuators: 1
   m_DeterministicInference: 0
   m_ObservableAttributeHandling: 0
---- !u!114 &5814752624815313112
+--- !u!114 &2949716397477124036
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -617,17 +617,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 6373488732032055744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d6fdbc19fced2f4c90ea28a34357a1b, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ebb39b7d27cc604381542f3265172ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
+  MaxStep: 5000
   Target: {fileID: 6373488730894090338}
+  obstacle: {fileID: 2954704961607843049}
+  rotate_val: 20
   moveSpeed: 1.5
   turnSpeed: 200
---- !u!114 &5983425411086603012
+  forceMultiplier: 4
+--- !u!114 &5080306390224907199
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
