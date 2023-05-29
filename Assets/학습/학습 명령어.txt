@@ -1,0 +1,13 @@
+[학습 시키기]
+cd C:\Users\user\Desktop\Github\ml-agents-main\config\ppo
+C:\Users\user\Desktop\Backup\전남대학교\4학년\1학기\소프트웨어공학종합프로젝트(캡스톤디자인)\ML-Agent-for-Practice\Config
+mlagents-learn.exe FindBall_config.yaml –-run-id=NoRay
+mlagents-learn.exe 3DBall.yaml –-run-id=myMoveBall
+
+[학습된 모델 보기]
+cd C:\Users\user\Desktop\Github\ml-agents-main\config\ppo
+tensorboard --logdir results
+http://localhost:6006/
+
+
+Ray Perception Sensor를 통해 인간의 시각적인 기능을 모방해 전투 상황을 인식하고 사람과 같은 움직임을 하기 위한 
