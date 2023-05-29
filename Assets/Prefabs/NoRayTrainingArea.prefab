@@ -436,7 +436,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6373488731522450990}
   m_Layer: 0
-  m_Name: TrainingArea
+  m_Name: NoRayTrainingArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

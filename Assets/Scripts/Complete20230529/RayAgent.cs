@@ -7,9 +7,10 @@ using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 //mlAgent 사용시 포함해야 됨
 
-public class gRollerBall : Agent
+public class RayAgent : Agent
 {
     Rigidbody rBody;
+    public Transform Obstacle;
     void Start()
     {
         rBody = GetComponent<Rigidbody>();
@@ -25,26 +26,15 @@ public class gRollerBall : Agent
         this.rBody.velocity = Vector3.zero;
         this.transform.localPosition = new Vector3(0, 1.0f, 0);
 
-        //새로운 애피소드 시작시, 다시 에이전트의 포지션의 초기화
-        // If the Agent fell, zero its momentum
-        if (this.transform.localPosition.y < 0) //에이전트가 floor 아래로 떨어진 경우 추가 초기화
-        {
-            this.rBody.angularVelocity = Vector3.zero;
-            this.rBody.velocity = Vector3.zero;
-            this.transform.localPosition = new Vector3(0, 1.0f, 0);
-        }
 
         //타겟의 위치는 에피소드 시작시 랜덤하게 변경된다.
         // Move the target to a new spot
-        float rx = 0;
-        float rz = 0;
-
-        rx = Random.value * 14 - 7;
-        rz = Random.value * 8 - 4;
-
-        Target.localPosition = new Vector3(rx,
+        Target.localPosition = new Vector3(Random.value * 14 - 7,
                                            0.5f,
-                                           rz);
+                                           Random.value * 8 - 4);
+        Obstacle.localPosition = new Vector3(Random.value * 14 - 7,
+                                           0.5f,
+                                           Random.value * 8 - 4);
     }
 
     /// <summary>

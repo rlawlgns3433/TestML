@@ -1,0 +1,29 @@
+{
+    "Shooting": {
+        "checkpoints": [
+            {
+                "steps": 200665,
+                "file_path": "results\\NoRay\\Shooting\\Shooting-200665.onnx",
+                "reward": null,
+                "creation_time": 1685348268.1465857,
+                "auxillary_file_paths": [
+                    "results\\NoRay\\Shooting\\Shooting-200665.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 200665,
+            "file_path": "results\\NoRay\\Shooting.onnx",
+            "reward": null,
+            "creation_time": 1685348268.1465857,
+            "auxillary_file_paths": [
+                "results\\NoRay\\Shooting\\Shooting-200665.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}
